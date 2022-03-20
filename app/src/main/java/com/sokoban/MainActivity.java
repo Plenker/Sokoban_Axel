@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     int Base, dpWidth, gameTextSize;  //Variables for Display Size
     TextView txtGameName;
 
-    //Class
+    //Class - definition
     SetField mySetField = new SetField();
 
     @Override
