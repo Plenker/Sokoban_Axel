@@ -58,7 +58,7 @@ public class Unit_Lvl_06 extends AppCompatActivity implements
     AnimatorSet animation = new AnimatorSet();
     boolean doMovePlayer;    //Used do interrupt moving animation when red Box is detected etc
     boolean lvlFinished, CheckLvlFinish;     //Boolean to set Win Animation
-    boolean GesturesActiv; // Gestures are Activated and Control Buttons are deactivated
+    boolean GesturesActiv=true; // Gestures are Activated and Control Buttons are deactivated
     int i; //counter
 
     //Define Buttons
@@ -155,7 +155,7 @@ public class Unit_Lvl_06 extends AppCompatActivity implements
 
         /*---------- Call Gesture Detection for moving the player by touching the display --------------*/
         Layout.setOnTouchListener(new RepeatButton(mGesture, 100, 100, view -> {
-            if(!lvlFinished) {
+            if(GesturesActiv && !lvlFinished) {
                 touch_X = RepeatButton.ReturnPos_X(); // get X Position by touching the display
                 touch_Y = RepeatButton.ReturnPos_Y(); // get Y Position by touching the display
                 direction_Gesture = myGameEnginePlayer.CalcGestureDirection(touch_X, touch_Y, posPlayer_X, posPlayer_Y, Base); // calculation for the direction
@@ -244,7 +244,7 @@ public class Unit_Lvl_06 extends AppCompatActivity implements
             GesturesActiv = false;
         } else { // configuration for closing the settings
             // general functions always unlock while closing the settings
-
+            GesturesActiv = true;
             btnMenu.setVisibility(View.INVISIBLE);
             btnMenu.setEnabled(false);
             btnRestart.setVisibility(View.INVISIBLE);

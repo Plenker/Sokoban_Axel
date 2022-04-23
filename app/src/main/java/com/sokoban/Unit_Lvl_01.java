@@ -67,7 +67,7 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
     //Define Buttons
     Button btnUp, btnDown, btnLeft, btnRight; // controler Buttons for the movement
     Button btnNextLvl, btnRestart, btnMenu; // Buttons for settings
-    ToggleButton btnSettings, btnActivateControler; // toggleButtons in the settings
+    ToggleButton btnSettings; // toggleButtons in the settings
     GestureDetector mGesture; // gesture detector used to move the player with touching on the screen
     TextView txtSettings; // background in the settings - textfield used to implement a text
 
@@ -143,7 +143,6 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         /*----------------------------- Set Menu Buttons ---------------------------------------------------*/
         txtSettings = myButtons.SetTxtSettings(Layout, Base);
         btnSettings = myButtons.SetBtnSettings(Layout, Base);
-        btnActivateControler = myButtons.SetBtnActivateControler(Layout, Base);
         btnMenu = myButtons.SetBtnMenu(Layout, Base);
         btnNextLvl = myButtons.SetBtnNextLvl(Layout, Base);
         btnRestart = myButtons.SetBtnRestart(Layout, Base);
@@ -157,9 +156,6 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
 
         /*----------------- Call Button Functions for Settings---------------------------*/
         btnSettings.setOnClickListener(view -> Settings()); // open the settings
-        btnActivateControler.setOnClickListener(view -> {
-
-        });// no function --> only change between Control Buttons and Gestures
 
         btnMenu.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_01.this, MainActivity.class);
@@ -178,16 +174,6 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
             startActivity(intent);
             myPlayer.stop();
         });
-
-        /*---------- Call Gesture Detection for moving the player by touching the display --------------*/
-        Layout.setOnTouchListener(new RepeatButton(mGesture, 100, 100, view -> {
-            if(GesturesActiv && !lvlFinished) {
-                touch_X = RepeatButton.ReturnPos_X(); // get X Position by touching the display
-                touch_Y = RepeatButton.ReturnPos_Y(); // get Y Position by touching the display
-                direction_Gesture = myGameEnginePlayer.CalcGestureDirection(touch_X, touch_Y, posPlayer_X, posPlayer_Y, Base); // calculation for the direction
-                GameEngine(direction_Gesture); // Game engine same like in the buttons
-            }
-        }));
 
     }
 
@@ -271,39 +257,17 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
             btnLeft.setEnabled(false);
             btnRight.setEnabled(false);
 
-            btnActivateControler.setVisibility(View.VISIBLE);
-            btnActivateControler.setEnabled(true);
             btnMenu.setVisibility(View.VISIBLE);
             btnMenu.setEnabled(true);
             btnRestart.setVisibility(View.VISIBLE);
             btnRestart.setEnabled(true);
             txtSettings.setVisibility(View.VISIBLE);
-            GesturesActiv = false;
         } else { // configuration for closing the settings
-            if (btnActivateControler.isChecked()) { // unlock buttons & lock touch dispay
                 btnUp.setEnabled(true);
                 btnDown.setEnabled(true);
                 btnLeft.setEnabled(true);
                 btnRight.setEnabled(true);
-                btnUp.setVisibility(View.VISIBLE);
-                btnDown.setVisibility(View.VISIBLE);
-                btnLeft.setVisibility(View.VISIBLE);
-                btnRight.setVisibility(View.VISIBLE);
-                GesturesActiv = false;
-            } else { // lock buttons & unlock touch dispay
-                btnUp.setEnabled(false);
-                btnDown.setEnabled(false);
-                btnLeft.setEnabled(false);
-                btnRight.setEnabled(false);
-                btnUp.setVisibility(View.INVISIBLE);
-                btnDown.setVisibility(View.INVISIBLE);
-                btnLeft.setVisibility(View.INVISIBLE);
-                btnRight.setVisibility(View.INVISIBLE);
-                GesturesActiv = true;
-            }
-            // general functions always unlock while closing the settings
-            btnActivateControler.setVisibility(View.INVISIBLE);
-            btnActivateControler.setEnabled(false);
+
             btnMenu.setVisibility(View.INVISIBLE);
             btnMenu.setEnabled(false);
             btnRestart.setVisibility(View.INVISIBLE);
