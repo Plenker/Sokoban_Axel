@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -31,22 +32,24 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         GestureDetector.OnGestureListener {
 
     int[][] field = {   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-                        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 3, 1, 1},
-                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1},
-                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 3, 1, 1},
+                        {1, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 3, 1},
+                        {1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 1},
+                        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1},
+                        {1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1},
+                        {1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1},
+                        {1, 0, 2, 1, 0, 0, 2, 0, 0, 0, 2, 0, 0, 1},
+                        {1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1},
                         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     }; // 1 = Wall // 2 = Box_brown & green // 3 = Goals // 4 = Player
 
     //Constants
-    int nrItemWall = 80; // max number of the walls - the game also run, if less walls are placed, but not if more!
-    int nrItemBox = 1; // important - the nr of the goals must be the same of the boxes!
+    int nrItemWall = 90; // max number of the walls - the game also run, if less walls are placed, but not if more!
+    int nrItemBox = 5; // important - the nr of the goals must be the same of the boxes!
 
     RelativeLayout Layout;
+    MediaPlayer myPlayer;
+
     int dpWidth;  //Variables for Display Size
     int Base;  //Variable for Calculation Image Size also used for Play field Map coords etc
     float posPlayer_X, posPlayer_Y; //coords of the Player
@@ -97,6 +100,8 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unit_lvl01); // set the content to the ID of the selected lvl - global definition
         mGesture = new GestureDetector(this, this); // gesture is defined global
+         myPlayer=MediaPlayer.create(this,R.raw.stopthinking);
+        myPlayer.start();
 
         /*---------------- set the App into Fullscreen Mode -----------------------------------*/
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //fore the app into landscape
@@ -152,21 +157,26 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
 
         /*----------------- Call Button Functions for Settings---------------------------*/
         btnSettings.setOnClickListener(view -> Settings()); // open the settings
-        btnActivateControler.setOnClickListener(view -> {});// no function --> only change between Control Buttons and Gestures
+        btnActivateControler.setOnClickListener(view -> {
+
+        });// no function --> only change between Control Buttons and Gestures
 
         btnMenu.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_01.this, MainActivity.class);
             startActivity(intent);
+            myPlayer.stop();
         });
 
         btnNextLvl.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_01.this, Unit_Lvl_02.class);
             startActivity(intent);
+            myPlayer.stop();
         });
 
         btnRestart.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_01.this, Unit_Lvl_01.class);
             startActivity(intent);
+            myPlayer.stop();
         });
 
         /*---------- Call Gesture Detection for moving the player by touching the display --------------*/
