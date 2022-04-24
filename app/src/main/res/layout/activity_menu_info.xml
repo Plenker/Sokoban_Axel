@@ -6,4 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".Menu_Info">
 
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="102dp"
+        android:layout_height="61dp"
+        android:backgroundTint="#673AB7"
+        android:text="Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="701dp"
+        android:layout_height="275dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127"
+        android:text="This Game is a copy of Sokoban
+        \n try to solve the level
+        \n move all boxes on the white tagged destinations
+\n\n Music:
+\n Level 1: Algae Bloom - Stop Thinking
+\n Level 2: next interpret - song name"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

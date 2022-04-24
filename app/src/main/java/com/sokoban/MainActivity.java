@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-           //     Intent intent = new Intent(MainActivity.this, Info.class);          //Switch to Page Info
-           //     startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, Menu_Info.class);          //Switch to Page Info
+                startActivity(intent);
             }
         });
 
