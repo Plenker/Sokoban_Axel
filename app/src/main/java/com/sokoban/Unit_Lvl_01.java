@@ -101,7 +101,7 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         setContentView(R.layout.activity_unit_lvl01); // set the content to the ID of the selected lvl - global definition
         mGesture = new GestureDetector(this, this); // gesture is defined global
          myPlayer=MediaPlayer.create(this,R.raw.stopthinking);
-        myPlayer.start();
+
 
         /*---------------- set the App into Fullscreen Mode -----------------------------------*/
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //fore the app into landscape
@@ -172,7 +172,7 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         btnRestart.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_01.this, Unit_Lvl_01.class);
             startActivity(intent);
-            myPlayer.stop();
+            myPlayer.pause();
         });
 
     }
@@ -276,7 +276,29 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        myPlayer.start();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        myPlayer.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        myPlayer.pause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myPlayer.pause();
+    }
 
     /*---------------- not used but must be configured for gestures function --------------------*/
 
