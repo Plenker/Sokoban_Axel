@@ -120,7 +120,7 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         imgBoxGreen = mySetField.SetBoxGreen(Layout, imgBoxGreen, Base, field);
         imgGoal = mySetField.SetGoals(Layout, imgGoal, Base, field);
         player = mySetField.SetPlayer(Layout, player, Base, field);
-        star = mySetField.SetStar(Layout, player, Base); // the star for winning the game
+        star = mySetField.SetStar(Layout, star, Base); // the star for winning the game
 
         /*----------------------------- Set Coordinate ---------------------------------------------------*/
         posWall_X = myCoordinate.GetPosWall_X(imgWall, nrItemWall);
@@ -133,6 +133,7 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         posGoal_Y = myCoordinate.GetPosGoal_Y(imgGoal, posGoal_Y, nrItemBox);
         posPlayer_X = player.getX();
         posPlayer_Y = player.getY();
+        myGameEnginePlayer.InitPosition_XY(posPlayer_X,posPlayer_Y);
 
         /*----------------------------- Set Control Buttons ---------------------------------------------------*/
         btnUp = myButtons.SetBtnUp(Layout, Base);

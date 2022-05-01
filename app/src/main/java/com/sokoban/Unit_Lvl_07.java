@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -31,26 +32,28 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
         GestureDetector.OnGestureListener {
 
     int[][] field = {   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-                        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 3, 1, 1},
-                        {1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 1},
-                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 1},
-                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1},
-                        {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
+            {1, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 1},
+            {1, 1, 2, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1},
+            {1, 3, 3, 1, 1, 0, 2, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1},
+            {1, 3, 3, 3, 1, 0, 0, 2, 0, 1, 2, 0, 0, 1, 0, 0, 2, 0, 1},
+            {1, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     }; // 1 = Wall // 2 = Box_brown & green // 3 = Goals // 4 = Player
 
     //Constants
-    int nrItemWall = 80; // max number of the walls - the game also run, if less walls are placed, but not if more!
-    int nrItemBox = 3; // important - the nr of the goals must be the same of the boxes!
+    int nrItemWall = 120; // max number of the walls - the game also run, if less walls are placed, but not if more!
+    int nrItemBox = 8; // important - the nr of the goals must be the same of the boxes!
 
     RelativeLayout Layout;
+    MediaPlayer myPlayer;
+
     int dpWidth;  //Variables for Display Size
     int Base;  //Variable for Calculation Image Size also used for Play field Map coords etc
     float posPlayer_X, posPlayer_Y; //coords of the Player
-    float touch_X, touch_Y; // touch cords of the display
+    float touch_X=5, touch_Y=7; // touch cords of the display
     GameEnginePlayer.Direction direction_Gesture; // enum for selection the direction after touching the idsplay
 
     Handler handler = new Handler(); // define Handler for changing color of teh box if it is moved to the goal
@@ -58,13 +61,12 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
     AnimatorSet animation = new AnimatorSet();
     boolean doMovePlayer;    //Used do interrupt moving animation when red Box is detected etc
     boolean lvlFinished, CheckLvlFinish;     //Boolean to set Win Animation
-    boolean GesturesActiv; // Gestures are Activated and Control Buttons are deactivated
+    boolean GesturesActiv=true; // Gestures are Activated and Control Buttons are deactivated
     int i; //counter
 
     //Define Buttons
-    Button btnUp, btnDown, btnLeft, btnRight; // controler Buttons for the movement
     Button btnNextLvl, btnRestart, btnMenu; // Buttons for settings
-    ToggleButton btnSettings, btnActivateControler; // toggleButtons in the settings
+    ToggleButton btnSettings; // toggleButtons in the settings
     GestureDetector mGesture; // gesture detector used to move the player with touching on the screen
     TextView txtSettings; // background in the settings - textfield used to implement a text
 
@@ -97,6 +99,7 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unit_lvl07); // set the content to the ID of the selected lvl - global definition
         mGesture = new GestureDetector(this, this); // gesture is defined global
+        myPlayer= MediaPlayer.create(this,R.raw.stopthinking);
 
         /*---------------- set the App into Fullscreen Mode -----------------------------------*/
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //fore the app into landscape
@@ -128,45 +131,34 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
         posGoal_Y = myCoordinate.GetPosGoal_Y(imgGoal, posGoal_Y, nrItemBox);
         posPlayer_X = player.getX();
         posPlayer_Y = player.getY();
-
-        /*----------------------------- Set Control Buttons ---------------------------------------------------*/
-        btnUp = myButtons.SetBtnUp(Layout, Base);
-        btnDown = myButtons.SetBtnDown(Layout, Base);
-        btnLeft = myButtons.SetBtnLeft(Layout, Base);
-        btnRight = myButtons.SetBtnRight(Layout, Base);
+        myGameEnginePlayer.InitPosition_XY(posPlayer_X,posPlayer_Y);
 
         /*----------------------------- Set Menu Buttons ---------------------------------------------------*/
         txtSettings = myButtons.SetTxtSettings(Layout, Base);
         btnSettings = myButtons.SetBtnSettings(Layout, Base);
-        btnActivateControler = myButtons.SetBtnActivateControler(Layout, Base);
         btnMenu = myButtons.SetBtnMenu(Layout, Base);
         btnNextLvl = myButtons.SetBtnNextLvl(Layout, Base);
         btnRestart = myButtons.SetBtnRestart(Layout, Base);
 
-
-        /*----------------- Call Button Functions for moving the player---------------------------*/
-        btnUp.setOnTouchListener(new RepeatButton(mGesture, 100, 100, view -> GameEngine(GameEnginePlayer.Direction.UP)));
-        btnDown.setOnTouchListener(new RepeatButton(mGesture, 100, 100, view -> GameEngine(GameEnginePlayer.Direction.DOWN)));
-        btnLeft.setOnTouchListener(new RepeatButton(mGesture, 100, 100, view -> GameEngine(GameEnginePlayer.Direction.LEFT)));
-        btnRight.setOnTouchListener(new RepeatButton(mGesture, 100, 100, view -> GameEngine(GameEnginePlayer.Direction.RIGHT)));
-
         /*----------------- Call Button Functions for Settings---------------------------*/
         btnSettings.setOnClickListener(view -> Settings()); // open the settings
-        btnActivateControler.setOnClickListener(view -> {});// no function --> only change between Control Buttons and Gestures
 
         btnMenu.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_07.this, MainActivity.class);
             startActivity(intent);
+            myPlayer.stop();
         });
 
         btnNextLvl.setOnClickListener(view -> {
-            Intent intent = new Intent(Unit_Lvl_07.this, Unit_Lvl_08.class);
+            Intent intent = new Intent(Unit_Lvl_07.this, Unit_Lvl_07.class);
             startActivity(intent);
+            myPlayer.stop();
         });
 
         btnRestart.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_07.this, Unit_Lvl_07.class);
             startActivity(intent);
+            myPlayer.pause();
         });
 
         /*---------- Call Gesture Detection for moving the player by touching the display --------------*/
@@ -236,10 +228,6 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
         }
         if(CheckLvlFinish){ // delete all buttons, show the star and appear two buttons
             lvlFinished = true;
-            btnUp.setEnabled(false);
-            btnDown.setEnabled(false);
-            btnLeft.setEnabled(false);
-            btnRight.setEnabled(false);
             btnSettings.setEnabled(false);
             btnMenu.setVisibility(View.VISIBLE);
             btnMenu.setEnabled(true);
@@ -256,13 +244,6 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
     // when pressing back the gestures OR the buttons are available, depends on the settings
     public void Settings() {
         if (btnSettings.isChecked()) { // configuration for opening the settings
-            btnUp.setEnabled(false);
-            btnDown.setEnabled(false);
-            btnLeft.setEnabled(false);
-            btnRight.setEnabled(false);
-
-            btnActivateControler.setVisibility(View.VISIBLE);
-            btnActivateControler.setEnabled(true);
             btnMenu.setVisibility(View.VISIBLE);
             btnMenu.setEnabled(true);
             btnRestart.setVisibility(View.VISIBLE);
@@ -270,30 +251,8 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
             txtSettings.setVisibility(View.VISIBLE);
             GesturesActiv = false;
         } else { // configuration for closing the settings
-            if (btnActivateControler.isChecked()) { // unlock buttons & lock touch dispay
-                btnUp.setEnabled(true);
-                btnDown.setEnabled(true);
-                btnLeft.setEnabled(true);
-                btnRight.setEnabled(true);
-                btnUp.setVisibility(View.VISIBLE);
-                btnDown.setVisibility(View.VISIBLE);
-                btnLeft.setVisibility(View.VISIBLE);
-                btnRight.setVisibility(View.VISIBLE);
-                GesturesActiv = false;
-            } else { // lock buttons & unlock touch dispay
-                btnUp.setEnabled(false);
-                btnDown.setEnabled(false);
-                btnLeft.setEnabled(false);
-                btnRight.setEnabled(false);
-                btnUp.setVisibility(View.INVISIBLE);
-                btnDown.setVisibility(View.INVISIBLE);
-                btnLeft.setVisibility(View.INVISIBLE);
-                btnRight.setVisibility(View.INVISIBLE);
-                GesturesActiv = true;
-            }
             // general functions always unlock while closing the settings
-            btnActivateControler.setVisibility(View.INVISIBLE);
-            btnActivateControler.setEnabled(false);
+            GesturesActiv = true;
             btnMenu.setVisibility(View.INVISIBLE);
             btnMenu.setEnabled(false);
             btnRestart.setVisibility(View.INVISIBLE);
@@ -302,7 +261,23 @@ public class Unit_Lvl_07 extends AppCompatActivity implements
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        myPlayer.start();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        myPlayer.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        myPlayer.pause();
+    }
 
     /*---------------- not used but must be configured for gestures function --------------------*/
 

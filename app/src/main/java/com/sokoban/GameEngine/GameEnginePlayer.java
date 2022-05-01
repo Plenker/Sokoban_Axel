@@ -28,6 +28,7 @@ public class GameEnginePlayer {
         boolean moveDown = (direction == Direction.DOWN);
         boolean moveLeft = (direction == Direction.LEFT);
         boolean moveRight = (direction == Direction.RIGHT);
+        boolean stay = (direction == Direction.STAY);
 
         for (e = 0; e < nrBox; e++) {
             for (i = 0; i < nrWall; i++) {
@@ -72,6 +73,9 @@ public class GameEnginePlayer {
                             && (player_X == posBox_X[e] + Base && player_Y == posBox_Y[e])) {
                         doAnimation = false;
                     }
+                }
+                if(stay) {    //stay
+                        doAnimation = false;
                 }
 
             }
@@ -180,6 +184,12 @@ public class GameEnginePlayer {
     public float ReturnPosition_Y(){
         return currentPlayer_Y; //return current y-position of the player
     }
+
+    public void InitPosition_XY(float Init_X, float Init_Y){
+        currentPlayer_X = Init_X; //set current x-position of the player
+        currentPlayer_Y = Init_Y; //set current x-position of the player
+    }
+
 
     /*----------------calculation the movement direction after touching the display------------*/
     public Direction CalcGestureDirection (float touch_X, float touch_Y, float player_X,float player_Y, int Base){
