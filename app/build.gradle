@@ -9,7 +9,7 @@ android {
         applicationId "com.sokoax"
         minSdk 21
         targetSdk 32
-        versionCode 5577995
+        versionCode 5577997
         versionName "SokoAxel"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
