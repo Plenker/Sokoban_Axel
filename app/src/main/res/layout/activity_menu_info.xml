@@ -32,16 +32,14 @@
         android:text="This Game is a copy of Sokoban
         \n try to solve the level
         \n move all boxes on the white tagged destinations
+        \n in some levels the player can be moved with buttons
+        \n in other levels the player can be moved by touching the display
+        \n touch more than one box away from the player in the direction you want to move
 \n\n Music:
-\n Level 1: Algae Bloom - Stop Thinking
+\n Level 1: Sephira - Able's Journey (Psyonysus Remix)
 \n Level 2: Algae Bloom - Stop Thinking
-\n Level 3: next interpret - song name
-\n Level 4: next interpret - song name
+\n Level 3: White Morph - Dream Catcher
+\n Level 4: Psyonysus - Infinite Now
 \n Level 5: Metronome - The Manifested
-\n Level 6: Sephira - Able's Journey (Psyonysus Remix)
-\n Level 7: next interpret - song name
-\n Level 8: next interpret - song name
-\n Level 9: next interpret - song name
-\n Level 10: next interpret - song name
 "/>
 </androidx.constraintlayout.widget.ConstraintLayout>

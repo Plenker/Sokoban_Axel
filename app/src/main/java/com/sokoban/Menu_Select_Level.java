@@ -14,7 +14,7 @@ import android.widget.ToggleButton;
 
 public class Menu_Select_Level extends AppCompatActivity {
 
-    int nrButtons = 10; // define the Number of Toggle Buttons - Levels
+    int nrButtons = 5; // define the Number of Toggle Buttons - Levels
     public ToggleButton[] btnLevel = new ToggleButton[nrButtons]; // Array for the Select Level Buttons
     int i=0,f=1; // Variables for Loop
     int LvlName=1, setPos_x=1, setPos_y=1;
@@ -129,31 +129,6 @@ public class Menu_Select_Level extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-                if (btnLevel[5].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_06.class);
-                    startActivity(intent);
-                }
-
-                if (btnLevel[6].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_07.class);
-                    startActivity(intent);
-                }
-
-                if (btnLevel[7].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_08.class);
-                    startActivity(intent);
-                }
-
-                if (btnLevel[8].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_09.class);
-                    startActivity(intent);
-                }
-
-                if (btnLevel[9].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_10.class);
-                    startActivity(intent);
-                }
-
             }
         });
 
@@ -215,66 +190,6 @@ public class Menu_Select_Level extends AppCompatActivity {
                     btnLevel[i].setChecked(false);
                 }
                 btnLevel[4].setChecked(true);
-
-            }
-        });
-
-        btnLevel[5].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[5].setChecked(true);
-
-            }
-        });
-
-        btnLevel[6].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[6].setChecked(true);
-
-            }
-        });
-
-        btnLevel[7].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[7].setChecked(true);
-
-            }
-        });
-
-        btnLevel[8].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[8].setChecked(true);
-
-            }
-        });
-
-        btnLevel[9].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[9].setChecked(true);
 
             }
         });

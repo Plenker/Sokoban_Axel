@@ -65,7 +65,7 @@ public class Unit_Lvl_05 extends AppCompatActivity implements
     int i; //counter
 
     //Define Buttons
-    Button btnNextLvl, btnRestart, btnMenu; // Buttons for settings
+    Button btnRestart, btnMenu; // Buttons for settings
     ToggleButton btnSettings; // toggleButtons in the settings
     GestureDetector mGesture; // gesture detector used to move the player with touching on the screen
     TextView txtSettings; // background in the settings - textfield used to implement a text
@@ -137,7 +137,7 @@ public class Unit_Lvl_05 extends AppCompatActivity implements
         txtSettings = myButtons.SetTxtSettings(Layout, Base);
         btnSettings = myButtons.SetBtnSettings(Layout, Base);
         btnMenu = myButtons.SetBtnMenu(Layout, Base);
-        btnNextLvl = myButtons.SetBtnNextLvl(Layout, Base);
+     //   btnNextLvl = myButtons.SetBtnNextLvl(Layout, Base);
         btnRestart = myButtons.SetBtnRestart(Layout, Base);
 
         /*----------------- Call Button Functions for Settings---------------------------*/
@@ -149,11 +149,11 @@ public class Unit_Lvl_05 extends AppCompatActivity implements
             myPlayer.stop();
         });
 
-        btnNextLvl.setOnClickListener(view -> {
+   /*     btnNextLvl.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_05.this, Unit_Lvl_06.class);
             startActivity(intent);
             myPlayer.stop();
-        });
+        }); */
 
         btnRestart.setOnClickListener(view -> {
             Intent intent = new Intent(Unit_Lvl_05.this, Unit_Lvl_05.class);
@@ -231,8 +231,8 @@ public class Unit_Lvl_05 extends AppCompatActivity implements
             btnSettings.setEnabled(false);
             btnMenu.setVisibility(View.VISIBLE);
             btnMenu.setEnabled(true);
-            btnNextLvl.setVisibility(View.VISIBLE);
-            btnNextLvl.setEnabled(true);
+        //    btnNextLvl.setVisibility(View.VISIBLE);
+        //    btnNextLvl.setEnabled(true);
             star.setVisibility(View.VISIBLE);
             btnMenu.setX((float) Base * 5); // set pos x
             btnMenu.setY((float) Base * 5); // set pos y

@@ -10,26 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SokoAxel">
         <activity
-            android:name=".Unit_Lvl_06"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_10"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_09"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_08"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_07"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".Unit_Lvl_05"
             android:exported="false"
             android:screenOrientation="landscape" />
