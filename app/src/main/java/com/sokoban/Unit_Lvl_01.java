@@ -31,7 +31,7 @@ public class Unit_Lvl_01 extends AppCompatActivity implements
         View.OnTouchListener,
         GestureDetector.OnGestureListener {
 
-    int[][] field = {   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, // Level 1
+    int[][] field = {   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
             {1, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 1},
             {1, 1, 2, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
