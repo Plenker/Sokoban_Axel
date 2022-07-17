@@ -10,27 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SokoAxel">
         <activity
-            android:name=".Unit_Lvl_05"
+            android:name=".Game_Control"
             android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_04"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_03"
-            android:exported="false"
+            android:label="@string/title_activity_game_control"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Menu_Select_Level"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_02"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Unit_Lvl_01"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity

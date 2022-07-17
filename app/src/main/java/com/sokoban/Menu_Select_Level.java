@@ -14,11 +14,54 @@ import android.widget.ToggleButton;
 
 public class Menu_Select_Level extends AppCompatActivity {
 
+    public Game_Control myGame_Control = new Game_Control();
+
     int nrButtons = 5; // define the Number of Toggle Buttons - Levels
     public ToggleButton[] btnLevel = new ToggleButton[nrButtons]; // Array for the Select Level Buttons
     int i=0,f=1; // Variables for Loop
     int LvlName=1, setPos_x=1, setPos_y=1;
     int Base, dpWidth;  //Variables for Display Size
+
+    static int[][] Level_1 = Levels.GetLvl_1(); //define Level Arrays for management
+    static int[][] Level_2 = Levels.GetLvl_2();
+    static int[][] Level_3 = Levels.GetLvl_3();
+    static int[][] Level_4 = Levels.GetLvl_4();
+    static int[][] Level_5 = Levels.GetLvl_5();
+
+    static int[][] currentLvl;
+    static int[] nrItemWall = Levels.GetNrItemWalls();// max number of the walls - the game also run, if less walls are placed, but not if more!
+    static int[] nrItemBox = Levels.GetNrItemBoxes(); // important - the nr of the goals must be the same of the boxes!
+    static int nrCurrentLvl=1; // needed for the next lvl Button
+    static boolean GesturesActive;
+
+    static int[][] GetCurrentLvl(){return currentLvl;}
+    static int GetLvlNrWall(){return nrItemWall[nrCurrentLvl-1];}
+    static int GetLvlNrBox(){return nrItemBox[nrCurrentLvl-1];}
+    static int GetCurrentLvlNr(){return nrCurrentLvl;}
+    static boolean GetGesturesActivation(){return GesturesActive;}
+
+    static void SetNextLvl(int nrNextLvl){
+        if(nrNextLvl==2){
+            currentLvl= Level_2;
+            nrCurrentLvl = 2;
+            GesturesActive = false;
+        }
+        if(nrNextLvl==3){
+            currentLvl= Level_3;
+            nrCurrentLvl = 3;
+            GesturesActive = true;
+        }
+        if(nrNextLvl==4){
+            currentLvl= Level_4;
+            nrCurrentLvl = 4;
+            GesturesActive = false;
+        }
+        if(nrNextLvl==5){
+            currentLvl= Level_5;
+            nrCurrentLvl = 5;
+            GesturesActive = true;
+        }
+    }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
@@ -105,27 +148,42 @@ public class Menu_Select_Level extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (btnLevel[0].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_01.class);
+                    currentLvl= Level_1;
+                    nrCurrentLvl = 1;
+                    GesturesActive = true;
+                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
                     startActivity(intent);
                 }
 
                 if (btnLevel[1].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_02.class);
+                    currentLvl= Level_2;
+                    nrCurrentLvl = 2;
+                    GesturesActive = false;
+                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
                     startActivity(intent);
                 }
 
                 if (btnLevel[2].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_03.class);
+                    currentLvl= Level_3;
+                    nrCurrentLvl = 3;
+                    GesturesActive = true;
+                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
                     startActivity(intent);
                 }
 
                 if (btnLevel[3].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_04.class);
+                    currentLvl= Level_4;
+                    nrCurrentLvl = 4;
+                    GesturesActive = false;
+                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
                     startActivity(intent);
                 }
 
                 if (btnLevel[4].isChecked()) { //Switch to Page Selected Level
-                    Intent intent = new Intent(Menu_Select_Level.this, Unit_Lvl_05.class);
+                    currentLvl= Level_5;
+                    nrCurrentLvl = 5;
+                    GesturesActive = true;
+                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
                     startActivity(intent);
                 }
 

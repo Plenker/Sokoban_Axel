@@ -15,7 +15,7 @@ import com.sokoban.R;
 public class SetButtons {
 
     /*----------------------- Button Move UP ---------------------*/
-    public Button SetBtnUp(RelativeLayout Layout, int Base) {
+    public Button SetBtnUp(RelativeLayout Layout, int Base, boolean gesture) {
         int myBase = Base /2;
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
@@ -29,12 +29,16 @@ public class SetButtons {
         button.setTextSize((float) (myBase/7) * 5); // Text size
         button.setTextColor(Layout.getResources().getColor(R.color.white)); // Text Color
 
-        return button;
+        if (gesture) {
+            button.setEnabled(false);
+            button.setVisibility(View.INVISIBLE);
+        }
 
+        return button;
     }
 
     /*----------------------- Button Move DOWN ---------------------*/
-    public Button SetBtnDown(RelativeLayout Layout, int Base) {
+    public Button SetBtnDown(RelativeLayout Layout, int Base, boolean gesture) {
         int myBase = Base /2;
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
@@ -50,11 +54,16 @@ public class SetButtons {
 
         button.setRotation(180); // rotate for button down
 
+        if (gesture) {
+            button.setEnabled(false);
+            button.setVisibility(View.INVISIBLE);
+        }
+
         return button;
     }
 
     /*----------------------- Button Move LEFT ---------------------*/
-    public Button SetBtnLeft(RelativeLayout Layout, int Base) {
+    public Button SetBtnLeft(RelativeLayout Layout, int Base, boolean gesture) {
         int myBase = Base /2;
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
@@ -70,11 +79,16 @@ public class SetButtons {
 
         button.setRotation(270); // rotate for button down
 
+        if (gesture) {
+            button.setEnabled(false);
+            button.setVisibility(View.INVISIBLE);
+        }
+
         return button;
     }
 
     /*----------------------- Button Move RIGHT ---------------------*/
-    public Button SetBtnRight(RelativeLayout Layout, int Base) {
+    public Button SetBtnRight(RelativeLayout Layout, int Base, boolean gesture) {
         int myBase = Base /2;
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
@@ -89,6 +103,11 @@ public class SetButtons {
         button.setTextColor(Layout.getResources().getColor(R.color.white)); // Text Color
 
         button.setRotation(90); // rotate for button down
+
+        if (gesture) {
+            button.setEnabled(false);
+            button.setVisibility(View.INVISIBLE);
+        }
 
         return button;
     }
