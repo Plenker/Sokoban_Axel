@@ -1,5 +1,6 @@
 package com.sokoban;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.AnimatorSet;
@@ -426,35 +427,36 @@ public class Game_Control extends AppCompatActivity implements
     /*---------------- not used but must be configured for gestures function --------------------*/
 
     @Override
-    public boolean onDown(MotionEvent motionEvent) {
+    public boolean onDown(@NonNull MotionEvent motionEvent) {
         return false;
     }
 
     @Override
-    public void onShowPress(MotionEvent motionEvent) {
+    public void onShowPress(@NonNull MotionEvent motionEvent) {
 
     }
 
     @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
+    public boolean onSingleTapUp(@NonNull MotionEvent motionEvent) {
         return false;
     }
 
     @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+    public boolean onScroll(MotionEvent motionEvent, @NonNull MotionEvent motionEvent1, float v, float v1) {
         return false;
     }
 
     @Override
-    public void onLongPress(MotionEvent motionEvent) {
+    public void onLongPress(@NonNull MotionEvent motionEvent) {
 
     }
 
     @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+    public boolean onFling(MotionEvent motionEvent, @NonNull MotionEvent motionEvent1, float v, float v1) {
         return false;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         return false;

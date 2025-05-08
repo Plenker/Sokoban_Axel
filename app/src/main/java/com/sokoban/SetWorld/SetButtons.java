@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.sokoban.Menu_Select_Level;
 import com.sokoban.R;
 
 public class SetButtons {

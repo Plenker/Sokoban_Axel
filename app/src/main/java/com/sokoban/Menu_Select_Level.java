@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -61,7 +60,7 @@ public class Menu_Select_Level extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +84,7 @@ public class Menu_Select_Level extends AppCompatActivity {
             Layout.addView(btnLevel[i]);
             btnLevel[i].setLayoutParams(new RelativeLayout.LayoutParams(Base, Base));
             btnLevel[i].setBackground(getResources().getDrawable(R.drawable.xml_selector_checked));
-            btnLevel[i].setText(Integer.toString(LvlName));
+            btnLevel[i].setText(String.format("%d", LvlName));
             btnLevel[i].setTextOn(Integer.toString(LvlName));
             btnLevel[i].setTextOff(Integer.toString(LvlName));
             btnLevel[i].setTextSize(Base/8);
@@ -132,122 +131,101 @@ public class Menu_Select_Level extends AppCompatActivity {
 
 
         /*---------------- Call Button Function Back ----------------------------*/
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Menu_Select_Level.this, MainActivity.class);   //Switch to Page Select Level
-                startActivity(intent);
-            }
+        btnBack.setOnClickListener(view -> {
+            Intent intent = new Intent(Menu_Select_Level.this, MainActivity.class);   //Switch to Page Select Level
+            startActivity(intent);
         });
 
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnStart.setOnClickListener(view -> {
 
-                if (btnLevel[0].isChecked()) { //Switch to Page Selected Level
-                    currentLvl= Level_1;
-                    nrCurrentLvl = 1;
-                   // GesturesActive = true;
-                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
-                    startActivity(intent);
-                }
-
-                if (btnLevel[1].isChecked()) { //Switch to Page Selected Level
-                    currentLvl= Level_2;
-                    nrCurrentLvl = 2;
-                  //  GesturesActive = false;
-                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
-                    startActivity(intent);
-                }
-
-                if (btnLevel[2].isChecked()) { //Switch to Page Selected Level
-                    currentLvl= Level_3;
-                    nrCurrentLvl = 3;
-                 //   GesturesActive = false;
-                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
-                    startActivity(intent);
-                }
-
-                if (btnLevel[3].isChecked()) { //Switch to Page Selected Level
-                    currentLvl= Level_4;
-                    nrCurrentLvl = 4;
-                 //   GesturesActive = false;
-                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
-                    startActivity(intent);
-                }
-
-                if (btnLevel[4].isChecked()) { //Switch to Page Selected Level
-                    currentLvl= Level_5;
-                    nrCurrentLvl = 5;
-                  //  GesturesActive = false;
-                    Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
-                    startActivity(intent);
-                }
-
+            if (btnLevel[0].isChecked()) { //Switch to Page Selected Level
+                currentLvl= Level_1;
+                nrCurrentLvl = 1;
+               // GesturesActive = true;
+                Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
+                startActivity(intent);
             }
+
+            if (btnLevel[1].isChecked()) { //Switch to Page Selected Level
+                currentLvl= Level_2;
+                nrCurrentLvl = 2;
+              //  GesturesActive = false;
+                Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
+                startActivity(intent);
+            }
+
+            if (btnLevel[2].isChecked()) { //Switch to Page Selected Level
+                currentLvl= Level_3;
+                nrCurrentLvl = 3;
+             //   GesturesActive = false;
+                Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
+                startActivity(intent);
+            }
+
+            if (btnLevel[3].isChecked()) { //Switch to Page Selected Level
+                currentLvl= Level_4;
+                nrCurrentLvl = 4;
+             //   GesturesActive = false;
+                Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
+                startActivity(intent);
+            }
+
+            if (btnLevel[4].isChecked()) { //Switch to Page Selected Level
+                currentLvl= Level_5;
+                nrCurrentLvl = 5;
+              //  GesturesActive = false;
+                Intent intent = new Intent(Menu_Select_Level.this, myGame_Control.getClass());
+                startActivity(intent);
+            }
+
         });
 
 
         /*------------------------- Call Button Functions --------------------------------------*/
-        btnLevel[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnLevel[0].setOnClickListener(view -> {
 
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[0].setChecked(true);
-
+            for (i = 0; i < nrButtons; i++) {
+                btnLevel[i].setChecked(false);
             }
+            btnLevel[0].setChecked(true);
+
         });
 
-        btnLevel[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnLevel[1].setOnClickListener(view -> {
 
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[1].setChecked(true);
-
+            for (i = 0; i < nrButtons; i++) {
+                btnLevel[i].setChecked(false);
             }
+            btnLevel[1].setChecked(true);
+
         });
 
-        btnLevel[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnLevel[2].setOnClickListener(view -> {
 
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[2].setChecked(true);
-
+            for (i = 0; i < nrButtons; i++) {
+                btnLevel[i].setChecked(false);
             }
+            btnLevel[2].setChecked(true);
+
         });
 
-        btnLevel[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnLevel[3].setOnClickListener(view -> {
 
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[3].setChecked(true);
-
+            for (i = 0; i < nrButtons; i++) {
+                btnLevel[i].setChecked(false);
             }
+            btnLevel[3].setChecked(true);
+
         });
 
-        btnLevel[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnLevel[4].setOnClickListener(view -> {
 
-                for (i = 0; i < nrButtons; i++) {
-                    btnLevel[i].setChecked(false);
-                }
-                btnLevel[4].setChecked(true);
-
+            for (i = 0; i < nrButtons; i++) {
+                btnLevel[i].setChecked(false);
             }
+            btnLevel[4].setChecked(true);
+
         });
 
     }

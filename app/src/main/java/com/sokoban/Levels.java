@@ -73,8 +73,6 @@ public class Levels {
     }; // 1 = Wall // 2 = Box_brown & green // 3 = Goals // 4 = Player
     static int nrItemWall_5 = 140; // max number of the walls - the game also run, if less walls are placed, but not if more!
     static int nrItemBox_5 = 13; // important - the nr of the goals must be the same of the boxes!
-
-    static int nrMaxLvl =5;
     static int[] nrItemWall = {nrItemWall_1, nrItemWall_2, nrItemWall_3, nrItemWall_4, nrItemWall_5};// max number of the walls - the game also run, if less walls are placed, but not if more!
     static int[] nrItemBox = {nrItemBox_1, nrItemBox_2, nrItemBox_3, nrItemBox_4, nrItemBox_5}; // important - the nr of the goals must be the same of the boxes!
 
@@ -84,7 +82,6 @@ public class Levels {
     static int[][] GetLvl_4() {return lvl_4;}
     static int[][] GetLvl_5() {return lvl_5;}
 
-    static int GetNrMaxLevel(){return nrMaxLvl;}
     static int[] GetNrItemWalls(){return nrItemWall;}
     static int[] GetNrItemBoxes(){return nrItemBox;}
 
