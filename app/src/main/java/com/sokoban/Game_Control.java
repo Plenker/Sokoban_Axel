@@ -58,7 +58,7 @@ public class Game_Control extends AppCompatActivity implements
     //Define Buttons
     Button btnUp, btnDown, btnLeft, btnRight; // controler Buttons for the movement
     Button btnNextLvl, btnRestart, btnMenu; // Buttons for settings
-    ToggleButton btnSettings; // toggleButtons in the settings
+    ToggleButton btnSettings, btnActivateTouchpad; // toggleButtons in the settings
     GestureDetector mGesture; // gesture detector used to move the player with touching on the screen
     TextView txtSettings; // background in the settings - textfield used to implement a text
 
@@ -138,6 +138,7 @@ public class Game_Control extends AppCompatActivity implements
         btnMenu = myButtons.SetBtnMenu(Layout, Base);
         btnNextLvl = myButtons.SetBtnNextLvl(Layout, Base);
         btnRestart = myButtons.SetBtnRestart(Layout, Base);
+        btnActivateTouchpad = myButtons.SetBtnTouchPad(Layout, Base, GesturesActiv);
 
 
         /*----------------- Call Button Functions for moving the player---------------------------*/
@@ -162,24 +163,107 @@ public class Game_Control extends AppCompatActivity implements
         btnSettings.setOnClickListener(view -> Settings()); // open the settings
 
         btnMenu.setOnClickListener(view -> {
+
+            if(btnActivateTouchpad.isChecked()){
+                btnUp.setEnabled(false);
+                btnDown.setEnabled(false);
+                btnLeft.setEnabled(false);
+                btnRight.setEnabled(false);
+                btnUp.setVisibility(View.INVISIBLE);
+                btnDown.setVisibility(View.INVISIBLE);
+                btnLeft.setVisibility(View.INVISIBLE);
+                btnRight.setVisibility(View.INVISIBLE);
+                GesturesActiv=true;
+                Menu_Select_Level.GesturesActive=true;
+            }
+            else{
+                btnUp.setEnabled(true);
+                btnDown.setEnabled(true);
+                btnLeft.setEnabled(true);
+                btnRight.setEnabled(true);
+                btnUp.setVisibility(View.VISIBLE);
+                btnDown.setVisibility(View.VISIBLE);
+                btnLeft.setVisibility(View.VISIBLE);
+                btnRight.setVisibility(View.VISIBLE);
+                GesturesActiv=false;
+                Menu_Select_Level.GesturesActive=false;
+            }
+
             Intent intent = new Intent(Game_Control.this, MainActivity.class);
             startActivity(intent);
             myPlayer.stop();
         });
 
         btnNextLvl.setOnClickListener(view -> {
+
+            if(btnActivateTouchpad.isChecked()){
+                btnUp.setEnabled(false);
+                btnDown.setEnabled(false);
+                btnLeft.setEnabled(false);
+                btnRight.setEnabled(false);
+                btnUp.setVisibility(View.INVISIBLE);
+                btnDown.setVisibility(View.INVISIBLE);
+                btnLeft.setVisibility(View.INVISIBLE);
+                btnRight.setVisibility(View.INVISIBLE);
+                GesturesActiv=true;
+                Menu_Select_Level.GesturesActive=true;
+            }
+            else{
+                btnUp.setEnabled(true);
+                btnDown.setEnabled(true);
+                btnLeft.setEnabled(true);
+                btnRight.setEnabled(true);
+                btnUp.setVisibility(View.VISIBLE);
+                btnDown.setVisibility(View.VISIBLE);
+                btnLeft.setVisibility(View.VISIBLE);
+                btnRight.setVisibility(View.VISIBLE);
+                GesturesActiv=false;
+                Menu_Select_Level.GesturesActive=false;
+            }
+
             Intent intent = new Intent(Game_Control.this, Game_Control.class);
             startActivity(intent);
             Menu_Select_Level.SetNextLvl(currentLvlNr+1);
             myPlayer.stop();
+
         });
 
         btnRestart.setOnClickListener(view -> {
+
+            if(btnActivateTouchpad.isChecked()){
+                btnUp.setEnabled(false);
+                btnDown.setEnabled(false);
+                btnLeft.setEnabled(false);
+                btnRight.setEnabled(false);
+                btnUp.setVisibility(View.INVISIBLE);
+                btnDown.setVisibility(View.INVISIBLE);
+                btnLeft.setVisibility(View.INVISIBLE);
+                btnRight.setVisibility(View.INVISIBLE);
+                GesturesActiv=true;
+                Menu_Select_Level.GesturesActive=true;
+            }
+            else{
+                btnUp.setEnabled(true);
+                btnDown.setEnabled(true);
+                btnLeft.setEnabled(true);
+                btnRight.setEnabled(true);
+                btnUp.setVisibility(View.VISIBLE);
+                btnDown.setVisibility(View.VISIBLE);
+                btnLeft.setVisibility(View.VISIBLE);
+                btnRight.setVisibility(View.VISIBLE);
+                GesturesActiv=false;
+                Menu_Select_Level.GesturesActive=false;
+            }
+
             Intent intent = new Intent(Game_Control.this, Game_Control.class);
             startActivity(intent);
             myPlayer.pause();
+
         });
 
+        btnActivateTouchpad.setOnClickListener(view -> {
+
+        });
     }
 
     /*---------- Game Engine methode --------------*/
@@ -241,6 +325,7 @@ public class Game_Control extends AppCompatActivity implements
             btnDown.setEnabled(false);
             btnLeft.setEnabled(false);
             btnRight.setEnabled(false);
+            GesturesActiv =false;
             btnSettings.setEnabled(false);
             btnMenu.setVisibility(View.VISIBLE);
             btnMenu.setEnabled(true);
@@ -261,22 +346,52 @@ public class Game_Control extends AppCompatActivity implements
             btnDown.setEnabled(false);
             btnLeft.setEnabled(false);
             btnRight.setEnabled(false);
+            btnUp.setVisibility(View.INVISIBLE);
+            btnDown.setVisibility(View.INVISIBLE);
+            btnLeft.setVisibility(View.INVISIBLE);
+            btnRight.setVisibility(View.INVISIBLE);
+            GesturesActiv =false;
 
             btnMenu.setVisibility(View.VISIBLE);
             btnMenu.setEnabled(true);
             btnRestart.setVisibility(View.VISIBLE);
             btnRestart.setEnabled(true);
+            btnActivateTouchpad.setVisibility(View.VISIBLE);
+            btnActivateTouchpad.setEnabled(true);
             txtSettings.setVisibility(View.VISIBLE);
         } else { // configuration for closing the settings
-            btnUp.setEnabled(true);
-            btnDown.setEnabled(true);
-            btnLeft.setEnabled(true);
-            btnRight.setEnabled(true);
+
+            if(btnActivateTouchpad.isChecked()){
+                btnUp.setEnabled(false);
+                btnDown.setEnabled(false);
+                btnLeft.setEnabled(false);
+                btnRight.setEnabled(false);
+                btnUp.setVisibility(View.INVISIBLE);
+                btnDown.setVisibility(View.INVISIBLE);
+                btnLeft.setVisibility(View.INVISIBLE);
+                btnRight.setVisibility(View.INVISIBLE);
+                GesturesActiv=true;
+                Menu_Select_Level.GesturesActive=true;
+            }
+            else{
+                btnUp.setEnabled(true);
+                btnDown.setEnabled(true);
+                btnLeft.setEnabled(true);
+                btnRight.setEnabled(true);
+                btnUp.setVisibility(View.VISIBLE);
+                btnDown.setVisibility(View.VISIBLE);
+                btnLeft.setVisibility(View.VISIBLE);
+                btnRight.setVisibility(View.VISIBLE);
+                GesturesActiv=false;
+                Menu_Select_Level.GesturesActive=false;
+            }
 
             btnMenu.setVisibility(View.INVISIBLE);
             btnMenu.setEnabled(false);
             btnRestart.setVisibility(View.INVISIBLE);
             btnRestart.setEnabled(false);
+            btnActivateTouchpad.setVisibility(View.INVISIBLE);
+            btnActivateTouchpad.setEnabled(false);
             txtSettings.setVisibility(View.INVISIBLE);
         }
     }

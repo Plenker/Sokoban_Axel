@@ -17,6 +17,7 @@ import com.sokoban.SetWorld.SetField;
 public class MainActivity extends AppCompatActivity {
 
     int Base, dpWidth, gameTextSize;  //Variables for Display Size
+
     TextView txtGameName;
 
     //Class - definition
@@ -82,10 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
 
     }
 }

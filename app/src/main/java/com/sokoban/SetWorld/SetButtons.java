@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.sokoban.Menu_Select_Level;
 import com.sokoban.R;
 
 public class SetButtons {
@@ -20,7 +21,7 @@ public class SetButtons {
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
         button.setLayoutParams(new RelativeLayout.LayoutParams(myBase*3, myBase*3)); //Set Size
-        button.setBackgroundColor(Layout.getResources().getColor(R.color.black)); // Set Color of the Button
+        button.setBackgroundColor(Layout.getResources().getColor(android.R.color.transparent)); // Set Color of the Button
 
         button.setX((float) myBase * 32); // set pos x
         button.setY((float) myBase * 14); // set pos y
@@ -43,7 +44,7 @@ public class SetButtons {
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
         button.setLayoutParams(new RelativeLayout.LayoutParams(myBase*3, myBase*3)); //Set Size
-        button.setBackgroundColor(Layout.getResources().getColor(R.color.black)); // Set Color of the Button
+        button.setBackgroundColor(Layout.getResources().getColor(android.R.color.transparent)); // Set Color of the Button
 
         button.setX((float) myBase * 32); // set pos x
         button.setY((float) myBase * 17); // set pos y
@@ -68,7 +69,7 @@ public class SetButtons {
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
         button.setLayoutParams(new RelativeLayout.LayoutParams(myBase*3, myBase*3)); //Set Size
-        button.setBackgroundColor(Layout.getResources().getColor(R.color.black)); // Set Color of the Button
+        button.setBackgroundColor(Layout.getResources().getColor(android.R.color.transparent)); // Set Color of the Button
 
         button.setX((float) myBase * 29); // set pos x
         button.setY((float)  (myBase * 15.5)); // set pos y
@@ -93,7 +94,7 @@ public class SetButtons {
         Button button = new Button(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
         button.setLayoutParams(new RelativeLayout.LayoutParams(myBase*3, myBase*3)); //Set Size
-        button.setBackgroundColor(Layout.getResources().getColor(R.color.black)); // Set Color of the Button
+        button.setBackgroundColor(Layout.getResources().getColor(android.R.color.transparent)); // Set Color of the Button
 
         button.setX((float) myBase * 35); // set pos x
         button.setY((float)  (myBase * 15.5)); // set pos y
@@ -135,7 +136,7 @@ public class SetButtons {
 
     /*----------------------- Button Activate Controler ---------------------*/
     @SuppressLint("UseCompatLoadingForDrawables")
-    public ToggleButton SetBtnActivateControler(RelativeLayout Layout, int Base) {
+    public ToggleButton SetBtnTouchPad(RelativeLayout Layout, int Base, boolean gesture) {
 
         ToggleButton button = new ToggleButton(Layout.getContext()); //Definde my Button with new Button Class
         Layout.addView(button);    // set the Layout from the selected Level
@@ -145,14 +146,16 @@ public class SetButtons {
         button.setX((float) Base * 6); // set pos x
         button.setY((float) Base * 7); // set pos y
 
-        button.setTextOn("Controler ON"); // set Text On
-        button.setTextOff("Controler OFF"); // set Text Off
+        button.setTextOn("Touchpad ON"); // set Text On
+        button.setTextOff("Touchpad OFF"); // set Text Off
         button.setTextSize((float) Base/4); // Text size
         button.setTextColor(Layout.getResources().getColor(R.color.black)); // Text Color
         button.setBackground(Layout.getResources().getDrawable(R.drawable.xml_selector_checked));
-        button.setChecked(true);
+        button.setChecked(false);
         button.setVisibility(View.INVISIBLE);
         button.setEnabled(false);
+        button.setChecked(gesture);
+
 
         return button;
     }
