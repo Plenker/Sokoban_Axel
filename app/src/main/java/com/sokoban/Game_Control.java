@@ -426,6 +426,8 @@ public class Game_Control extends AppCompatActivity implements
 
     /*---------------- not used but must be configured for gestures function --------------------*/
 
+
+
     @Override
     public boolean onDown(@NonNull MotionEvent motionEvent) {
         return false;
